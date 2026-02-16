@@ -1,0 +1,63 @@
+###Register
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "maddy",
+  "email": "maddy@test.com",
+  "password": "123456"
+}
+
+### Login User
+  ##Returns JWT Token
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "maddy@test.com",
+  "password": "123456"
+}
+
+
+###Create Complaint
+POST http://localhost:5000/api/complaints/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNjA4YTA4NTAyNjk2NDg4YzA4MzAiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3MTI2NjIwMCwiZXhwIjoxNzcxMzUyNjAwfQ.KvFAA81UAm4GgAoL73AV1mqbmmhYLOJG9o8YbbSuB5M
+{
+  "title": "",
+  "description": "Machine not dispensing cash",
+  "priority": "HIGH"
+}
+
+###Get my complaints
+GET http://localhost:5000/api/complaints/my
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNGFlNjU2ZWQ1YzIzZDI2OTg2ODEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3MTI2Mjc5NSwiZXhwIjoxNzcxMzQ5MTk1fQ.hiw42Bla4fSpSHiA2FA-lEK-KhClUS0rYCg0qF9W8kk
+###Update the role
+
+###Get all complaints--adminOnly
+GET http://localhost:5000/api/complaints/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
+
+###Update status---adminOnly--When he resolved the complaint
+PUT http://localhost:5000/api/complaints/status/699351e3e1485a5260be7a29
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
+
+{
+  "status": "RESOLVED"
+}
+
+###admin dashboard
+GET http://localhost:5000/api/complaints/dashboard
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
+
+###Search Complaints based on title
+GET http://localhost:5000/api/complaints/search?keyword=ATM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
+
+###Filter complaints by statsu
+GET http://localhost:5000/api/complaints/filter?status=RESOLVED
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
+
+
+
