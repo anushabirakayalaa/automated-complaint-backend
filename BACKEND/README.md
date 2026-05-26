@@ -114,3 +114,60 @@ Example status history:
   }
 ]
 ```
+
+---
+
+## System Architecture
+
+The project follows a standard modular, layered architecture to separate concerns and ensure maintainability:
+
+- **APIs**: Handle routing, HTTP request/response parsing, and controller mapping.
+- **Services**: Contain the core business logic, validation rules, and database operations.
+- **Models**: Define the MongoDB schemas and data structures using Mongoose.
+- **Middleware**: Intercept requests to handle cross-cutting concerns like authentication and authorization.
+
+```mermaid
+graph TD
+    Client[Client Browser / Frontend] <--> APIs[APIs / Express Routes]
+    APIs <--> Middleware[Middleware / Auth & Role Check]
+    Middleware <--> Services[Services / Business Logic]
+    Services <--> Models[Models / Mongoose Schemas]
+    Models <--> DB[(MongoDB)]
+```
+
+---
+
+## Security Features
+
+Security is integrated at multiple layers of the system to protect sensitive user and system data:
+
+* **JWT-Based Authentication**: Stateless authentication utilizing JSON Web Tokens for secure session management.
+* **Password Hashing**: Industry-standard password hashing using `bcrypt` to secure user passwords in storage.
+* **Protected Routes**: Restricting API endpoint access exclusively to authenticated requests.
+* **Role-Based Authorization (RBAC)**: Fine-grained access control where specific capabilities are locked to designated roles (`USER`, `SUPPORT_AGENT`, `ADMIN`).
+* **Middleware-Based Access Control**: Centralized route guards enforcing authentication and roles before logic execution.
+
+---
+
+## Complaint Status Workflow
+
+Every complaint moves through a structured progression from creation to resolution, fully tracked in the status audit history.
+
+```mermaid
+stateDiagram-v2
+    [*] --> PENDING : Complaint Created
+    PENDING --> ESCALATED : Admin / Agent Escalates
+    PENDING --> RESOLVED : Direct Resolution
+    ESCALATED --> RESOLVED : Final Resolution
+    RESOLVED --> [*]
+```
+
+---
+
+## Future Enhancements
+
+- **Real Email Notifications**: Integrating `nodemailer` with Gmail SMTP to notify users of real-time complaint status updates.
+- **SLA Automatic Escalation**: Scheduled background cron jobs to automatically escalate pending complaints if unresolved after a set SLA duration.
+- **Advanced Dashboard Graphs**: Interactive analytics charts for admin reporting (using Recharts or Chart.js on the frontend).
+- **Two-Factor Authentication (2FA)**: Adding an extra layer of security for administrative accounts.
+- **Attachment Support**: Allowing users to upload screenshots or documents related to their complaints.
