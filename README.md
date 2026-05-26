@@ -1,5 +1,7 @@
-### FinResolve – Automated Banking Complaint Escalation System
+# FinResolve – Automated Banking Complaint Escalation System
+
 A scalable role-based banking complaint management backend system designed to streamline complaint tracking, escalation workflows, and administrative monitoring in enterprise environments.
+
 ---
 
 ### Project Overview
@@ -73,7 +75,7 @@ Admin Routes
 
 ---
 
-## System Architecture
+## System Architecture & Directory Structure
 
 The project follows a standard modular, layered architecture to separate concerns and ensure maintainability:
 
@@ -82,13 +84,52 @@ The project follows a standard modular, layered architecture to separate concern
 - **Models**: Define the MongoDB schemas and data structures using Mongoose.
 - **Middleware**: Intercept requests to handle cross-cutting concerns like authentication and authorization.
 
+### Directory Structure
+
+```text
+AUTOMATED_COMPLAINT_ESCALATION/
+├── BACKEND/                    # Backend Node.js / Express Application
+│   ├── APIS/                   # API Route Definitions
+│   │   ├── AuthAPI.js          # Authentication Endpoints
+│   │   └── ComplaintAPI.js     # Complaint Operations Endpoints
+│   ├── middlewares/            # Custom Middleware Functions
+│   │   ├── adminOnly.js        # Restricts access to ADMIN/SUPPORT roles
+│   │   └── verifyToken.js      # Validates JWT tokens on protected routes
+│   ├── models/                 # Mongoose Database Schemas
+│   │   ├── complaintModel.js   # Complaint Schema & Priority/Status Hooks
+│   │   └── userModel.js        # User Schema & Role Definition
+│   ├── services/               # Core Business Logic & DB Operations
+│   │   ├── authService.js      # User Registration & Login Service
+│   │   └── complaintService.js # CRUD & Workflow Management Service
+│   ├── server.js               # Application Entry Point & DB Connection
+│   └── package.json            # Node.js Project Dependencies
+│
+├── FRONTEND/                   # Frontend React Application (Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/         # Reusable UI Components
+│   │   ├── context/            # React Context (Auth, Toast, etc.)
+│   │   ├── pages/              # Page Components
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── RegisterPage.jsx
+│   │   │   ├── CreateComplaintPage.jsx
+│   │   │   ├── UserComplaintsPage.jsx
+│   │   │   ├── AdminComplaintsPage.jsx
+│   │   │   └── AdminDashboardPage.jsx
+│   │   ├── App.jsx             # Main App Router & Layout
+│   │   └── main.jsx            # Application Entry Point
+│   ├── tailwind.config.js      # Tailwind CSS Configuration
+│   └── package.json            # Frontend Dependencies & Scripts
+```
+
+### Architecture Diagram
+
 ```mermaid
 graph TD
-    Client[Client Browser / Frontend] <--> APIs[APIs / Express Routes]
-    APIs <--> Middleware[Middleware / Auth & Role Check]
-    Middleware <--> Services[Services / Business Logic]
-    Services <--> Models[Models / Mongoose Schemas]
-    Models <--> DB[(MongoDB)]
+    Client[Client / Frontend] --> APIs[APIs / Routes]
+    APIs --> Middleware[Middleware / Auth]
+    Middleware --> Services[Services / Business Logic]
+    Services --> Models[Models / Schemas]
+    Models --> DB[MongoDB Database]
 ```
 
 ---
@@ -110,12 +151,10 @@ Security is integrated at multiple layers of the system to protect sensitive use
 Every complaint moves through a structured progression from creation to resolution, fully tracked in the status audit history.
 
 ```mermaid
-stateDiagram-v2
-    [*] --> PENDING : Complaint Created
-    PENDING --> ESCALATED : Admin / Agent Escalates
-    PENDING --> RESOLVED : Direct Resolution
-    ESCALATED --> RESOLVED : Final Resolution
-    RESOLVED --> [*]
+graph LR
+    PENDING --> ESCALATED
+    PENDING --> RESOLVED
+    ESCALATED --> RESOLVED
 ```
 
 ---
