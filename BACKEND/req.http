@@ -3,8 +3,8 @@ POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "name": "maddy",
-  "email": "maddy@test.com",
+  "name": "Anusha Birakayala",
+  "email": "anushabirakayalaa@gmail.com",
   "password": "123456"
 
   
@@ -16,7 +16,7 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "maddy@test.com",
+  "email": "anushabirakayalaa@gmail.com",
   "password": "123456"
 }
 
@@ -24,17 +24,17 @@ Content-Type: application/json
 ###Create Complaint
 POST http://localhost:5000/api/complaints/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNjA4YTA4NTAyNjk2NDg4YzA4MzAiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3MTUxNDk3NSwiZXhwIjoxNzcxNjAxMzc1fQ.7AAyTyb0Bg0bn-x3C4r64kFwqaPeiHyY1UEawY5Yhqc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTBlN2VlY2RiOTdkMzdmZTMwNzM4ZGUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3OTMzNDk2NSwiZXhwIjoxNzc5NDIxMzY1fQ.2YQhN-7geIhnrviJ-ENzPMjrT-705e0Bo9BdsZEzLe4
 
 {
-  "title": "ATM NOT WORKING",
-  "description": "Machine not dispensing cash",
+  "title": "TRANSACTION FAILURE",
+  "description": "I attempted to withdraw cash from the ATM, but the transaction failed. However, the amount was deducted from my account. I need assistance in resolving this issue and getting a refund.",
   "priority": "HIGH"
 }
 
 ###Get my complaints
 GET http://localhost:5000/api/complaints/my
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNjA4YTA4NTAyNjk2NDg4YzA4MzAiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3MTUxNDk3NSwiZXhwIjoxNzcxNjAxMzc1fQ.7AAyTyb0Bg0bn-x3C4r64kFwqaPeiHyY1UEawY5Yhqc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTBlN2VlY2RiOTdkMzdmZTMwNzM4ZGUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3OTMzNDk2NSwiZXhwIjoxNzc5NDIxMzY1fQ.2YQhN-7geIhnrviJ-ENzPMjrT-705e0Bo9BdsZEzLe4
 ###Get all complaints--adminOnly
 GET http://localhost:5000/api/complaints/all
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
@@ -53,10 +53,10 @@ GET http://localhost:5000/api/complaints/dashboard
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
 
 ###Search Complaints based on title
-GET http://localhost:5000/api/complaints/search?keyword=ATM
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
+GET http://localhost:5000/api/complaints/search?keyword=TRANSACTION
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTBlN2VlY2RiOTdkMzdmZTMwNzM4ZGUiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3OTMzNDk2NSwiZXhwIjoxNzc5NDIxMzY1fQ.2YQhN-7geIhnrviJ-ENzPMjrT-705e0Bo9BdsZEzLe4
 
-###Filter complaints by statsu
+###Filter complaints by status
 GET http://localhost:5000/api/complaints/filter?status=RESOLVED
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTkzNTM0M2UxNDg1YTUyNjBiZTdhMzEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzEyNjI5MjMsImV4cCI6MTc3MTM0OTMyM30.-6GgPbacQuXluG-mvpsLx90AWYl40G68sOv4vMTl1PA
 

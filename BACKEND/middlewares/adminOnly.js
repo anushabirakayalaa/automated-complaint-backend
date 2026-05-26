@@ -2,8 +2,8 @@
 
 const adminOnly = (req, res, next) => {
 
-  if (req.user.role !== "ADMIN") {
-    return res.status(403).json({ message: "Admin only! Access denied" });
+  if (!["ADMIN", "SUPPORT_AGENT"].includes(req.user.role)) {
+    return res.status(403).json({ message: "Admin or support agent only! Access denied" });
   }next();
 };
 

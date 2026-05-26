@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import { authRoute } from "./APIS/AuthAPI.js";
 import { complaintRoute } from "./APIS/ComplaintAPI.js";
@@ -9,6 +10,7 @@ import { complaintRoute } from "./APIS/ComplaintAPI.js";
 dotenv.config();
 //create express application    
 const app = express();
+app.use(cors());
 //ADDING BODY PARSER MIDDLEWARE
 app.use(express.json());
 

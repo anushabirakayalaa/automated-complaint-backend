@@ -26,13 +26,15 @@ There is a need for a centralized system that:
 
 # Features
 
-User Features 1. User Registration & Login: (Secure JWT-based authentication.)
+User Features 
+    1. User Registration & Login: (Secure JWT-based authentication.)
 
     2. Raise Complaints: Submit complaints with priority levels (LOW, MEDIUM, HIGH).
 
     3. View My Complaints: Users can track the status of their own complaints
 
-Admin Features 1. Admin Login & Role-Based Access: Only administrators can access management features.
+Admin Features
+    1. Admin Login & Role-Based Access: Only administrators can access management features.
 
     2.  View All Complaints: Complete visibility over all complaints in the system.
 
@@ -65,6 +67,6 @@ User Routes
 Admin Routes
     -  GET /api/complaints – View all complaints.
     -  PUT /api/complaints/:id/status – Update complaint status.
-    - GET /api/complaints/search?query=... – Search complaints by keyword.
+    -  GET /api/complaints/search?query=... – Search complaints by keyword.
     -  GET /api/complaints/filter?status=... – Filter complaints by status.
     -  GET /api/dashboard – Get complaint statistics (total, pending, escalated, resolved).
