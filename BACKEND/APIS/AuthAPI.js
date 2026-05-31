@@ -1,8 +1,10 @@
 import express from "express";
-
-import { registerUser, loginUser } from "../services/authService.js";
+import { registerUser, loginUser, refreshAccessToken, logoutUser } from "../services/authService.js";
+import verifyToken from "../middlewares/verifyToken.js";
 
 export const authRoute = express.Router();
-//register and login operations in----authService.js
+
 authRoute.post("/register", registerUser);
 authRoute.post("/login", loginUser);
+authRoute.post("/refresh", refreshAccessToken);
+authRoute.post("/logout", verifyToken, logoutUser);

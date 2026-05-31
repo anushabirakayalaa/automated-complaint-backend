@@ -38,7 +38,7 @@ export default function AdminDashboardPage() {
         const response = await getDashboardStats();
         setStats(response.data);
       } catch (error) {
-        showToast(error.response?.data?.message || "Unable to load dashboard", "error");
+        showToast(error.message || "Unable to load dashboard", "error");
       } finally {
         setLoading(false);
       }

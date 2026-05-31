@@ -7,3 +7,11 @@ export const registerUser = (formData) => {
 export const loginUser = (formData) => {
   return api.post("/auth/login", formData);
 };
+
+export const refreshAccessToken = (refreshToken) => {
+  return api.post("/auth/refresh", { refreshToken });
+};
+
+export const logoutUser = () => {
+  return api.post("/auth/logout");
+};

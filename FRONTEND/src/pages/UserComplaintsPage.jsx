@@ -31,7 +31,7 @@ export default function UserComplaintsPage() {
       const response = await getMyComplaints({ page: 1, limit: 20 });
       setComplaints(unwrapComplaintList(response.data));
     } catch (error) {
-      showToast(error.response?.data?.message || "Unable to load complaints", "error");
+      showToast(error.message || "Unable to load complaints", "error");
     } finally {
       setLoading(false);
     }
@@ -53,7 +53,7 @@ export default function UserComplaintsPage() {
 
       setComplaints(unwrapComplaintList(response.data));
     } catch (error) {
-      showToast(error.response?.data?.message || "Search failed", "error");
+      showToast(error.message || "Search failed", "error");
     } finally {
       setLoading(false);
     }
@@ -70,7 +70,7 @@ export default function UserComplaintsPage() {
       showToast("Complaint removed from active list");
       loadComplaints();
     } catch (error) {
-      showToast(error.response?.data?.message || "Unable to delete complaint", "error");
+      showToast(error.message || "Unable to delete complaint", "error");
     }
   };
 

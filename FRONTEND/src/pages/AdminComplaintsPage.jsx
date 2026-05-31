@@ -28,7 +28,7 @@ export default function AdminComplaintsPage() {
       const response = await getAllComplaints({ page: 1, limit: 30 });
       setComplaints(unwrapComplaintList(response.data));
     } catch (error) {
-      showToast(error.response?.data?.message || "Unable to load complaints", "error");
+      showToast(error.message || "Unable to load complaints", "error");
     } finally {
       setLoading(false);
     }
@@ -50,7 +50,7 @@ export default function AdminComplaintsPage() {
 
       setComplaints(unwrapComplaintList(response.data));
     } catch (error) {
-      showToast(error.response?.data?.message || "Filter failed", "error");
+      showToast(error.message || "Filter failed", "error");
     } finally {
       setLoading(false);
     }
@@ -67,7 +67,7 @@ export default function AdminComplaintsPage() {
       showToast("Status updated and notification simulated");
       loadComplaints();
     } catch (error) {
-      showToast(error.response?.data?.message || "Unable to update status", "error");
+      showToast(error.message || "Unable to update status", "error");
     }
   };
 

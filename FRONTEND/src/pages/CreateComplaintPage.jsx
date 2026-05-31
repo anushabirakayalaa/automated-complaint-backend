@@ -37,7 +37,7 @@ export default function CreateComplaintPage() {
       showToast("Complaint created successfully");
       navigate("/dashboard");
     } catch (error) {
-      showToast(error.response?.data?.message || "Unable to create complaint", "error");
+      showToast(error.message || "Unable to create complaint", "error");
     } finally {
       setLoading(false);
     }

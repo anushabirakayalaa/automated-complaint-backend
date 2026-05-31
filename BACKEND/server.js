@@ -42,8 +42,10 @@ app.use((req,res,next)=>
 })
 
 //error handling
-app.use((err,req,res,next)=>
-{
-    console.log("ERROR",err)
-    res.json({message:"Error",reason:err.message})
-})
+app.use((err, req, res, next) => {
+    console.error("ERROR", err);
+    res.status(err.status || 500).json({
+        message: "Error",
+        reason: err.message || "Internal Server Error"
+    });
+});

@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import { loginUser, registerUser } from "../services/authService";
+import { loginUser, registerUser, logoutUser } from "../services/authService";
 
 const AuthContext = createContext(null);
 
@@ -21,30 +21,30 @@ export function AuthProvider({ children }) {
   const login = async (formData) => {
     const response = await loginUser(formData);
     const receivedToken = response.data.token;
-
-    if (!receivedToken) {
-      throw new Error(response.data.message || "Login failed");
-    }
+    const receivedRefreshToken = response.data.refreshToken;
 
     localStorage.setItem("token", receivedToken);
+    localStorage.setItem("refreshToken", receivedRefreshToken);
     setToken(receivedToken);
     setUser(decodeToken(receivedToken));
   };
 
   const register = async (formData) => {
     const response = await registerUser(formData);
-
-    if (response.data.message?.toLowerCase().includes("exists")) {
-      throw new Error(response.data.message);
-    }
-
     return response.data;
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setUser(null);
+  const logout = async () => {
+    try {
+      await logoutUser();
+    } catch (err) {
+      console.error("Server-side logout failed:", err);
+    } finally {
+      localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
+      setToken(null);
+      setUser(null);
+    }
   };
 
   const value = useMemo(
@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
       token,
       user,
       isAuthenticated: Boolean(token),
-      isAdmin: user?.role === "ADMIN",
+      isAdmin: user?.role === "ADMIN" || user?.role === "SUPPORT_AGENT",
       login,
       register,
       logout
