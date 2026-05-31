@@ -3,8 +3,9 @@ import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ roles }) {
   const { isAuthenticated, user } = useAuth();
+  const storedToken = localStorage.getItem("token");
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !storedToken) {
     return <Navigate to="/login" replace />;
   }
 

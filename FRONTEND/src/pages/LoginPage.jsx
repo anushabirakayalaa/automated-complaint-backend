@@ -29,7 +29,7 @@ export default function LoginPage() {
       setLoading(true);
       await login(formData);
       showToast("Login successful");
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       showToast(error.message || "Unable to login", "error");
     } finally {

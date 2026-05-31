@@ -22,11 +22,19 @@ export function AuthProvider({ children }) {
     const response = await loginUser(formData);
     const receivedToken = response.data.token;
     const receivedRefreshToken = response.data.refreshToken;
+    const decodedUser = decodeToken(receivedToken);
+
+    if (!receivedToken || !decodedUser) {
+      throw new Error("Login failed: invalid server response");
+    }
 
     localStorage.setItem("token", receivedToken);
-    localStorage.setItem("refreshToken", receivedRefreshToken);
+    if (receivedRefreshToken) {
+      localStorage.setItem("refreshToken", receivedRefreshToken);
+    }
     setToken(receivedToken);
-    setUser(decodeToken(receivedToken));
+    setUser(decodedUser);
+    return decodedUser;
   };
 
   const register = async (formData) => {
