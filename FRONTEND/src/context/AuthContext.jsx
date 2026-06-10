@@ -20,12 +20,17 @@ export function AuthProvider({ children }) {
 
   const login = async (formData) => {
     const response = await loginUser(formData);
-    const receivedToken = response.data.token;
-    const receivedRefreshToken = response.data.refreshToken;
+    const responseData = response.data;
+    const receivedToken = responseData?.token;
+    const receivedRefreshToken = responseData?.refreshToken;
     const decodedUser = decodeToken(receivedToken);
 
     if (!receivedToken || !decodedUser) {
-      throw new Error("Login failed: invalid server response");
+      const serverMessage =
+        typeof responseData === "string"
+          ? "API returned a web page instead of login data. Check VITE_API_BASE_URL."
+          : responseData?.message;
+      throw new Error(serverMessage || "Login failed: server did not return a valid token");
     }
 
     localStorage.setItem("token", receivedToken);

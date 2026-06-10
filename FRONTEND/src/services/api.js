@@ -35,8 +35,8 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // Check if the error is 401 and we haven't already retried this request
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    // Check if the error is 401 and we haven't already retried this request, and it's not a login request
+    if (error.response?.status === 401 && !originalRequest._retry && !originalRequest.url.includes("/auth/login")) {
       // Prevent infinite loop if the refresh call itself is returning 401
       if (originalRequest.url.includes("/auth/refresh")) {
         localStorage.removeItem("token");
