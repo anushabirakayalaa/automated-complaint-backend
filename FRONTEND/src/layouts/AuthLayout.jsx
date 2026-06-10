@@ -20,11 +20,11 @@ export default function AuthLayout() {
             <p className="text-sm font-semibold uppercase tracking-wide text-blue-200">Enterprise complaint management</p>
             <h1 className="mt-4 text-4xl font-bold leading-tight">Track, escalate, and resolve banking complaints with clarity.</h1>
             <p className="mt-5 text-base leading-7 text-blue-100">
-              A professional MERN dashboard for status history, role-based access, analytics, and realistic banking workflows.
+              Streamline your complaint resolution process with our intuitive platform designed for modern banking operations.
             </p>
           </div>
 
-          <p className="text-sm text-blue-200">JWT secured frontend connected to your Express and MongoDB backend.</p>
+          <p className="text-sm text-blue-200">Manage and resolve banking complaints efficiently.</p>
         </section>
 
         <section className="flex items-center justify-center p-5">
