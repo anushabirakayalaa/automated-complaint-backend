@@ -11,8 +11,8 @@ export default function AuthLayout() {
               <ShieldCheck className="h-7 w-7" />
             </div>
             <div>
-              <p className="text-lg font-bold">Automated Complaint Escalation</p>
-              <p className="text-sm text-blue-100">Banking System</p>
+              <p className="text-lg font-bold">FinResolve</p>
+              <p className="text-sm text-blue-100">Automated Banking Complaint Escalation System</p>
             </div>
           </div>
 
